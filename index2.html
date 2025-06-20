@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACO Group | Our Clients</title>
+    <style>
+        :root {
+            --primary-dark: #013220;
+            --primary-light: #2E8B57;
+            --accent-gold: #D4AF37;
+            --light-bg: #F8F8F8;
+            --text-dark: #222;
+            --text-light: #FFF;
+        }
+        
+        /* Clients Section - Redesigned */
+        .clients-section {
+            padding: 6rem 5%;
+            background-color: var(--light-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent-gold);
+        }
+        
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .client-card {
+            background: var(--text-light);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow: hidden;
+            position: relative;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .client-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        
+        .client-logo {
+            height: 60px;
+            margin-bottom: 1.5rem;
+            object-fit: contain;
+            transition: all 0.4s ease;
+        }
+        
+        .client-card:hover .client-logo {
+            transform: scale(1.1);
+        }
+        
+        .client-name {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .client-industry {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Your logo watermark effect */
+        .client-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('ChatGPT Image Jun 19, 2025, 10_58_33 PM.png') center/contain no-repeat;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        
+        .client-card:hover::after {
+            opacity: 0.05;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="images/png" href="ChatGPT Image Jun 19, 2025, 10_58_33 PM.png">
+</head>
+<body>
+    <!-- Clients Section -->
+    <section class="clients-section">
+        <div class="section-title">
+            <h2>Our Prestigious Clients</h2>
+        </div>
+        <div class="clients-grid">
+            <!-- Client 1 -->
+            <div class="client-card">
+                <img src="https://via.placeholder.com/150x60?text=IT+Readers" alt="IT Readers" class="client-logo">
+                <h3 class="client-name">IT Readers</h3>
+                <p class="client-industry">Technology Media</p>
+            </div>
+            
+            <!-- Client 2 -->
+            <div class="client-card">
+                <img src="https://via.placeholder.com/150x60?text=Global+Fin" alt="Global Financial" class="client-logo">
+                <h3 class="client-name">Global Financial</h3>
+                <p class="client-industry">Banking Services</p>
+            </div>
+            
+            <!-- Client 3 -->
+            <div class="client-card">
+                <img src="https://via.placeholder.com/150x60?text=Vertex+Tech" alt="Vertex Technologies" class="client-logo">
+                <h3 class="client-name">Vertex Technologies</h3>
+                <p class="client-industry">Software Development</p>
+            </div>
+            
+            <!-- Client 4 -->
+            <div class="client-card">
+                <img src="https://via.placeholder.com/150x60?text=Urban+Build" alt="Urban Builders" class="client-logo">
+                <h3 class="client-name">Urban Builders</h3>
+                <p class="client-industry">Construction</p>
+            </div>
+            
+            <!-- Client 5 -->
+            <div class="client-card">
+                <img src="https://via.placeholder.com/150x60?text=MediCare+" alt="MediCare Plus" class="client-logo">
+                <h3 class="client-name">MediCare Plus</h3>
+                <p class="client-industry">Healthcare</p>
+            </div>
+            
+            <!-- Client 6 -->
+            <div class="client-card">
+                <img src="https://via.placeholder.com/150x60?text=Elite+Retail" alt="Elite Retail Group" class="client-logo">
+                <h3 class="client-name">Elite Retail Group</h3>
+                <p class="client-industry">Luxury Retail</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
