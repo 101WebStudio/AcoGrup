@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACO Group | Elite Business Consulting & Strategic Growth Solutions</title>
+    <style>
+        :root {
+            --primary-dark: #013220; /* Deep emerald green */
+            --primary-light: #2E8B57; /* Forest green */
+            --accent-gold: #D4AF37; /* Luxury gold */
+            --light-bg: #F8F8F8;
+            --text-dark: #222;
+            --text-light: #FFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: var(--text-light);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text span {
+            color: var(--accent-gold);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(1, 50, 32, 0.85), rgba(1, 50, 32, 0.85)), 
+                        url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 0 5%;
+        }
+        
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+        
+        .hero .experience-badge {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 6rem 5%;
+            background-color: var(--text-light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent-gold);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+        
+        .benefit-card {
+            background: var(--light-bg);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+        
+        .benefit-card ul {
+            list-style: none;
+        }
+        
+        .benefit-card ul li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.8rem;
+        }
+        
+        .benefit-card ul li::before {
+            content: '✓';
+            color: var(--accent-gold);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: var(--text-light);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border: 5px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 5rem 5%;
+            background-color: var(--text-light);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 3.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .stat-item p {
+            color: var(--primary-dark);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: var(--text-light);
+        }
+        
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-form h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .submit-btn:hover {
+            background: #e6c34d;
+        }
+        
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            color: var(--primary-dark);
+        }
+        
+        .form-success i {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+        
+        .form-success h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 4rem 5% 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+            text-align: left;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo p {
+            opacity: 0.8;
+            line-height: 1.6;
+            max-width: 300px;
+        }
+        
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+        }
+        
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent-gold);
+        }
+        
+        .footer-contact {
+            flex: 1;
+            min-width: 250px;
+            text-align: left;
+        }
+        
+        .footer-contact h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+        }
+        
+        .contact-info {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .contact-info i {
+            color: var(--accent-gold);
+            margin-top: 3px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent-gold);
+        }
+        
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .footer-logo,
+            .footer-links,
+            .footer-contact {
+                text-align: center;
+                min-width: 100%;
+            }
+            
+            .footer-logo p {
+                max-width: 100%;
+                margin: 0 auto 2rem;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="images/png" href="ChatGPT Image Jun 19, 2025, 10_58_33 PM.png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="ChatGPT Image Jun 19, 2025, 10_58_33 PM.png" alt="ACO Group Logo"> <!-- Replace with your logo URL -->
+                <div class="logo-text">ACO <span>Group</span></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="experience-badge">Trusted Since 2021 • 4+ Years of Excellence</div>
+        <h1>Elite Business Solutions for Disruptive Growth</h1>
+        <p>ACO Group delivers unparalleled strategic consulting, transforming challenges into competitive advantages for Fortune 500s and ambitious enterprises worldwide.</p>
+        <a href="#contact" class="btn">Schedule a Consultation</a>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="section-title">
+            <h2>Why Partner With ACO Group</h2>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-chess-king"></i>
+                </div>
+                <h3>Strategic Dominance</h3>
+                <ul>
+                    <li>Proprietary market penetration frameworks</li>
+                    <li>Competitor disruption playbooks</li>
+                    <li>Board-level advisory services</li>
+                    <li>IPO preparation & investor relations</li>
+                </ul>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Financial Engineering</h3>
+                <ul>
+                    <li>30%+ cost optimization strategies</li>
+                    <li>Tax-efficient capital structuring</li>
+                    <li>M&A due diligence & integration</li>
+                    <li>High-net-worth wealth management</li>
+                </ul>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Operational Excellence</h3>
+                <ul>
+                    <li>AI-driven process automation</li>
+                    <li>Supply chain resilience modeling</li>
+                    <li>C-suite leadership development</li>
+                    <li>Cross-border expansion protocols</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>The ACO Group Advantage</h2>
+                <p>Founded in 2021, ACO Group has rapidly become the consulting firm of choice for executives demanding measurable, transformative results. Our team comprises former Fortune 500 strategists, Ivy League economists, and industry-disrupting innovators.</p>
+                <p>We reject cookie-cutter solutions. Every engagement begins with a 360° enterprise diagnostic, followed by bespoke strategies leveraging our proprietary GROWTH<sup>®</sup> methodology.</p>
+                <a href="#contact" class="btn">Access Our Expertise</a>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="ACO Group Executive Team">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="section-title">
+            <h2>Our Impact</h2>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>4+</h3>
+                <p>Years of Excellence</p>
+            </div>
+            <div class="stat-item">
+                <h3>120+</h3>
+                <p>Global Clients</p>
+            </div>
+            <div class="stat-item">
+                <h3>$3.2B</h3>
+                <p>Client Value Generated</p>
+            </div>
+            <div class="stat-item">
+                <h3>96%</h3>
+                <p>Retention Rate</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-form" id="contactForm">
+                <h3>Request a Confidential Consultation</h3>
+                <form id="consultationForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="error-message" id="nameError">Please enter your name</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Business Email *</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message" id="emailError">Please enter a valid email</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company *</label>
+                        <input type="text" id="company" name="company" required>
+                        <div class="error-message" id="companyError">Please enter your company</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interest *</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select an option</option>
+                            <option value="Strategic Consulting">Strategic Consulting</option>
+                            <option value="Financial Advisory">Financial Advisory</option>
+                            <option value="Operational Optimization">Operational Optimization</option>
+                            <option value="Leadership Development">Leadership Development</option>
+                            <option value="Event Service">Event Service</option>
+                            <option value="Costumer Service">Costumer Service</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="error-message" id="serviceError">Please select a service</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Strategic Objectives *</label>
+                        <textarea id="message" name="message" required></textarea>
+                        <div class="error-message" id="messageError">Please enter your objectives</div>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Request</button>
+                </form>
+                <div class="form-success" id="formSuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <h4>Request Submitted Successfully</h4>
+                    <p>Our executive team will contact you within 24 hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="ChatGPT Image Jun 19, 2025, 10_58_33 PM.png" alt="ACO Group Logo"> <!-- Replace with your logo URL -->
+                <p>ACO Group delivers elite business transformation services to discerning clients worldwide. Our proprietary methodologies create sustainable competitive advantages.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#benefits">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>500 Park Avenue, 12th Floor<br>New York, NY 10022</p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone"></i>
+                    <p>+1 (212) 555-1000</p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <p>executive@acogroup.com</p>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 ACO Group. All Rights Reserved. | Designed for Disruptive Leaders</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('consultationForm');
+            const successMessage = document.getElementById('formSuccess');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Reset error messages
+                document.querySelectorAll('.error-message').forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                // Validate form
+                let isValid = true;
+                const name = document.getElementById('name');
+                const email = document.getElementById('email');
+                const company = document.getElementById('company');
+                const service = document.getElementById('service');
+                const message = document.getElementById('message');
+                
+                if (!name.value.trim()) {
+                    document.getElementById('nameError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (!company.value.trim()) {
+                    document.getElementById('companyError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (!service.value) {
+                    document.getElementById('serviceError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (!message.value.trim()) {
+                    document.getElementById('messageError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    // Prepare form data
+                    const formData = new FormData(form);
+                    const formObject = {};
+                    formData.forEach((value, key) => {
+                        formObject[key] = value;
+                    });
+                    
+                    // Send email using FormSubmit
+                    fetch('https://formsubmit.co/ajax/101webstudio@gmail.com', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: formObject.name,
+                            email: formObject.email,
+                            company: formObject.company,
+                            service: formObject.service,
+                            message: formObject.message,
+                            _subject: 'New Consultation Request from ACO Group Website'
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        form.style.display = 'none';
+                        successMessage.style.display = 'block';
+                        form.reset();
+                    })
+                }
+            });
+            
+            // Reset form on success message click
+            successMessage.addEventListener('click', function() {
+                successMessage.style.display = 'none';
+                form.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
