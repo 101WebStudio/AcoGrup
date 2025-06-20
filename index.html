@@ -572,6 +572,122 @@
                 padding: 2rem;
             }
         }
+
+* Vertical Navbar Styles */
+        .vertical-navbar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 250px;
+            background: linear-gradient(to bottom, var(--primary-dark), var(--primary-light));
+            color: var(--text-light);
+            z-index: 1001;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .vertical-navbar.active {
+            transform: translateX(0);
+        }
+        
+        .vertical-nav-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .vertical-nav-header img {
+            height: 40px;
+        }
+        
+        .vertical-nav-links {
+            list-style: none;
+            padding: 1.5rem 0;
+            flex-grow: 1;
+        }
+        
+        .vertical-nav-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .vertical-nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            display: block;
+            padding: 0.8rem 1.5rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .vertical-nav-links a:hover,
+        .vertical-nav-links a.active {
+            background: rgba(255,255,255,0.05);
+            color: var(--accent-gold);
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 1.8rem;
+        }
+        
+        .vertical-nav-footer {
+            padding: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+            opacity: 0.7;
+            text-align: center;
+        }
+        
+        /* Toggle Button */
+        .nav-toggle {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            z-index: 1002;
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Adjust content when navbar is open */
+        .content-wrapper {
+            transition: margin-left 0.3s ease;
+            margin-left: 0;
+        }
+        
+        .content-wrapper.shifted {
+            margin-left: 250px;
+        }
+        
+        /* Show toggle button on mobile */
+        @media (max-width: 1024px) {
+            .nav-toggle {
+                display: flex;
+            }
+            
+            .vertical-navbar {
+                width: 220px;
+            }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -590,6 +706,7 @@
                 <li><a href="#benefits">Benefits</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="index2.html" target="_blank">Clients</a></li>
             </ul>
         </nav>
     </header>
@@ -752,6 +869,8 @@
                     <li><a href="#benefits">Services</a></li>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="index2.html" target="_blank">Clients</a></li>
+
                     <li><a href="#">Case Studies</a></li>
                 </ul>
             </div>
@@ -867,6 +986,6 @@
                 form.style.display = 'block';
             });
         });
-    </script>
+</script>
 </body>
 </html>
