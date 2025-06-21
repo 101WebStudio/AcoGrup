@@ -986,6 +986,46 @@
                 form.style.display = 'block';
             });
         });
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileNav.classList.remove('active');
+        document.querySelector('#mobileMenuBtn i').classList.remove('fa-times');
+        document.querySelector('#mobileMenuBtn i').classList.add('fa-bars');
+    });
+});
+// Vertical Navbar Toggle
+        const navToggle = document.getElementById('navToggle');
+        const verticalNav = document.getElementById('verticalNav');
+        const contentWrapper = document.getElementById('contentWrapper');
+        
+        navToggle.addEventListener('click', function() {
+            verticalNav.classList.toggle('active');
+            contentWrapper.classList.toggle('shifted');
+            
+            // Change icon
+            const icon = this.querySelector('i');
+            if (verticalNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close nav when clicking on mobile
+        if (window.innerWidth <= 1024) {
+            document.querySelectorAll('.vertical-nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    verticalNav.classList.remove('active');
+                    contentWrapper.classList.remove('shifted');
+                    navToggle.querySelector('i').classList.remove('fa-times');
+                    navToggle.querySelector('i').classList.add('fa-bars');
+                });
+            });
+        }
 </script>
 </body>
 </html>
