@@ -844,7 +844,7 @@
                         <textarea id="message" name="message" required></textarea>
                         <div class="error-message" id="messageError">Please enter your objectives</div>
                     </div>
-                    <button type="submit" class="submit-btn">Submit Request</button>
+                    <button type="submit" class="submit-btn" method="POST">Submit Request</button>
                 </form>
                 <div class="form-success" id="formSuccess">
                     <i class="fas fa-check-circle"></i>
@@ -901,9 +901,10 @@
     </footer>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('consultationForm');
     const successMessage = document.getElementById('formSuccess');
+    const submitBtn = form.querySelector('.submit-btn');
     
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -918,109 +919,84 @@
         
         try {
             // Show loading state
-            const submitBtn = form.querySelector('.submit-btn');
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             
-            // Send form data
-            const response = await sendFormData();
+            // Prepare form data
+            const formData = new FormData(form);
+            const formObject = Object.fromEntries(formData.entries());
             
-            if (response.success) {
-                showSuccess();
-            } else {
-                showError();
+            // Add FormSubmit parameters
+            formObject._subject = 'New Consultation Request from ACO Group Website';
+            formObject._template = 'table';
+            formObject._captcha = 'false';
+            formObject._replyto = formObject.email; // Auto-reply to sender
+            
+            // Send to FormSubmit
+            const response = await fetch('https://formsubmit.co/ajax/101webstudio@gmail.com', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formObject)
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
+            
+            const data = await response.json();
+            console.log('FormSubmit response:', data);
+            
+            // Show success
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+            form.reset();
+            
         } catch (error) {
             console.error('Submission error:', error);
-            showError();
+            alert('Submission failed. Please try again or contact us directly at executive@acogroup.com');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Submit Request';
         }
     });
     
     // Form validation
     function validateForm() {
         let isValid = true;
+        const fields = [
+            { id: 'name', error: 'nameError' },
+            { id: 'email', error: 'emailError', validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+            { id: 'company', error: 'companyError' },
+            { id: 'service', error: 'serviceError' },
+            { id: 'message', error: 'messageError' }
+        ];
         
-        // Required fields
-        const requiredFields = {
-            name: { error: 'nameError' },
-            email: { 
-                error: 'emailError',
-                validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-            },
-            company: { error: 'companyError' },
-            service: { error: 'serviceError' },
-            message: { error: 'messageError' }
-        };
-        
-        for (const [fieldId, config] of Object.entries(requiredFields)) {
-            const field = document.getElementById(fieldId);
-            const errorElement = document.getElementById(config.error);
+        fields.forEach(field => {
+            const element = document.getElementById(field.id);
+            const errorElement = document.getElementById(field.error);
             
-            if (!field.value.trim() || (config.validate && !config.validate(field.value))) {
+            if (!element.value.trim() || (field.validate && !field.validate(element.value))) {
                 errorElement.style.display = 'block';
                 isValid = false;
                 
                 // Scroll to first error
-                if (isValid === false) {
-                    field.focus();
+                if (!isValid) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    element.focus();
                 }
             }
-        }
-        
-        return isValid;
-    }
-    
-    // Send form data to FormSubmit
-    async function sendFormData() {
-        const formData = new FormData(form);
-        const formObject = Object.fromEntries(formData.entries());
-        
-        // Add additional FormSubmit parameters
-        formObject._subject = 'New Consultation Request from ACO Group Website';
-        formObject._template = 'table'; // Better email formatting
-        formObject._captcha = 'false'; // Disable captcha if not needed
-        
-        const response = await fetch('https://formsubmit.co/ajax/101webstudio@gmail.com', {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(formObject)
         });
         
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        return await response.json();
-    }
-    
-    // Show success message
-    function showSuccess() {
-        form.style.display = 'none';
-        successMessage.style.display = 'block';
-        form.reset();
-    }
-    
-    // Show error message
-    function showError() {
-        const submitBtn = form.querySelector('.submit-btn');
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Request';
-        
-        alert('Submission failed. Please try again or contact us directly at executive@acogroup.com');
+        return isValid;
     }
     
     // Reset form on success message click
     successMessage.addEventListener('click', function() {
         successMessage.style.display = 'none';
         form.style.display = 'block';
-        
-        // Reset submit button
-        const submitBtn = form.querySelector('.submit-btn');
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Request';
     });
 });
 </script>
